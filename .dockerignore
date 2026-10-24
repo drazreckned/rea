@@ -1,0 +1,12 @@
+.git
+node_modules
+dist
+.cache
+.turbo
+integrations/personal-mcp/node_modules
+integrations/personal-mcp/.state
+integrations/personal-mcp/config.local.json
+integrations/personal-mcp/.env
+*.log
+.env*
+.codex

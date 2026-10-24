@@ -1,0 +1,14 @@
+{
+  "transport": "stdio",
+  "stateDir": ".state",
+  "maxInvestigations": 2,
+  "maxJobs": 100,
+  "jobTimeoutMs": 900000,
+  "rea": {
+    "command": "node",
+    "args": ["../../scripts/rea.mjs", "mcp"],
+    "cwd": ".",
+    "env": {}
+  },
+  "auth": { "mode": "private" }
+}

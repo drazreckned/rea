@@ -1,0 +1,28 @@
+name: Personal MCP integration
+on:
+  push:
+    paths:
+      ["integrations/personal-mcp/**", ".github/workflows/personal-mcp.yml"]
+  pull_request:
+    paths:
+      ["integrations/personal-mcp/**", ".github/workflows/personal-mcp.yml"]
+permissions:
+  contents: read
+jobs:
+  integration:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: integrations/personal-mcp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: integrations/personal-mcp/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test

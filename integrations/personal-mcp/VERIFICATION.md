@@ -15,13 +15,14 @@ Recorded 2026-10-23. Source baseline: `a062529bb2aa064be37e82df39c59c4fa798fe50`
 - Local MCP registration added with an independently stored, hash-verified pre-change config backup. Existing configuration values were compared and preserved. Active pre-existing chats may require MCP reload before the new tools appear.
 - Fresh Codex app-server `mcpServerStatus/list`: discovered all seven `rea-personal` gateway tools from the installed host configuration, without starting a model turn.
 - Final local automated suite: 13 tests passed, including cancellation while the initial job write is still pending. `npm run check:fast` passed both typecheck and lint tasks. A repeat real HTTP/REA check and STDIO worker-exit check also passed after the lifecycle changes.
+- GitHub Actions run [40044300282](https://github.com/drazreckned/rea/actions/runs/40044300282): Windows and Linux suites passed; the deployment Docker image built successfully and both real-REA HTTP and STDIO/worker-cleanup verification scripts passed inside it. This establishes that container workflow, not a live OpenAI cloud executor.
 
 ## Not yet established
 
 - Live hosted personal ChatGPT/Work discovery and analysis through Secure MCP Tunnel. Tunnel creation alone is not runtime readiness. Runtime credential approval, the running client, plugin installation and an actual receiving-surface call are separate gates.
 - Zero additional price for Secure MCP Tunnel traffic: no explicit tunnel price/waiver was found in the retrieved official guide. Do not infer tunnel pricing from Responses API MCP token pricing.
 - Real native decompilation on this machine. The preflight found no configured Ghidra, Hopper or IDA provider; static JavaScript analysis succeeded independently. General Windows provider parity is not claimed.
-- Docker image execution: no Docker executable was available on the validation host. The deployment recipe is prepared, not runtime verified.
+- Docker was unavailable on the local Windows host; the image build and its real analysis/cleanup checks were instead executed successfully in Linux CI as recorded above.
 - Public HTTPS/OAuth provider deployment: signature/claim enforcement is tested locally, but a production authorization server, TLS proxy and deployment are not provisioned.
 - Work Cloud local-executor discovery and Codex Cloud execution: actual runtime support and target/engine access still require separate tests.
 

@@ -26,3 +26,13 @@ jobs:
           cache-dependency-path: integrations/personal-mcp/package-lock.json
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm test
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build portable REA worker image
+        run: docker build -f integrations/personal-mcp/deploy/Dockerfile -t rea-personal-verification .
+      - name: Verify real analysis through HTTP in the container
+        run: docker run --rm rea-personal-verification node scripts/verify-rea.mjs
+      - name: Verify STDIO and worker cleanup in the container
+        run: docker run --rm rea-personal-verification node scripts/verify-stdio.mjs
